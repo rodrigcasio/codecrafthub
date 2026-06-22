@@ -43,19 +43,6 @@ Steps:
 1. Create the project folder (the structure below) and navigate into it.
 2. Install dependencies (Express).
 
-Suggested project structure (beginner-friendly):
-
-CodeCraftHub/
-- data/
-  - courses.json            // JSON file to store courses (an array)
-- src/
-  - app.js                   // Express app and route mounting
-  - storage.js               // Helpers to read/write the JSON file
-  - routes/
-    - courses.js             // REST API routes for courses
-- package.json
-- README.md
-
 Install steps (assuming you place files as shown):
 - npm install
 - Note: The server code is designed to run from src/app.js if you follow the "src" layout.
@@ -191,9 +178,9 @@ CodeCraftHub/
   - courses.json            // JSON file to store courses (an array)
 - src/
   - app.js                   // Express app and route mounting
-  - storage.js               // Helpers to read/write the JSON file
+  - coursesStorage.js               // Helpers to read/write the JSON file
   - routes/
-    - courses.js             // REST API routes for courses
+    - courseRoutes.js             // REST API routes for courses
 - package.json
 - README.md
 

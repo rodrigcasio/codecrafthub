@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { readCourses, writeCourses } = require('../storage');
+const { readCourses, writeCourses } = require('../coursesStorage.js');
 
 function generateId() {
   return Date.now().toString(36) + Math.random().toString(36).slice(2);
@@ -8,13 +8,13 @@ function generateId() {
 
 const STATUS = ['Not Started', 'In Progress', 'Completed'];
 
-// GET /courses
+// GET /api/courses
 router.get('/', async (req, res) => {
   const courses = await readCourses();
   res.json(courses);
 });
 
-// GET /courses/:id
+// GET /api/courses/:id
 router.get('/:id', async (req, res) => {
   const courses = await readCourses();
   const course = courses.find(c => c.id === req.params.id);
@@ -22,7 +22,7 @@ router.get('/:id', async (req, res) => {
   res.json(course);
 });
 
-// POST /courses
+// POST /api/courses
 router.post('/', async (req, res) => {
   const { name, description, targetDate, status } = req.body;
   if (!name || !description || !targetDate) {
@@ -44,7 +44,7 @@ router.post('/', async (req, res) => {
   res.status(201).json(newCourse);
 });
 
-// PUT /courses/:id
+// PUT /api/courses/:id
 router.put('/:id', async (req, res) => {
   const { name, description, targetDate, status } = req.body;
   const courses = await readCourses();
@@ -65,7 +65,7 @@ router.put('/:id', async (req, res) => {
   res.json(courses[idx]);
 });
 
-// DELETE /courses/:id
+// DELETE /api/courses/:id
 router.delete('/:id', async (req, res) => {
   const courses = await readCourses();
   const idx = courses.findIndex(c => c.id === req.params.id);
